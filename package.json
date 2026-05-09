@@ -4,7 +4,7 @@
   "main": "src/app.js",
   "scripts": {
     "start": "node src/app.js",
-    "test": "jest --coverage --coverageReporters=lcov"
+    "test": "jest"
   },
   "dependencies": {
     "dotenv": "^17.4.2",
