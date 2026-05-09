@@ -13,7 +13,7 @@ describe("App.js endpoints", () => {
   it("POST /login returns token", async () => {
     const res = await request(app)
       .post("/login")
-      .send({ user: "demo" });
+      .send({ "user": "demo" });
     expect(res.statusCode).toBe(200);
     expect(res.body).toHaveProperty("token");
   });
