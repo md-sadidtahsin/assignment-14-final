@@ -34,7 +34,7 @@ app.get('/eval', (req, res) => {
 });
 
 app.post("/login", (req, res) => {
-  const token = jwt.sign({ user: req.body.user }, SECRET_KEY);
+  const token = jwt.sign({ user: req.body.user }, SECRET_KEY); // now using the environment variable
   res.status(200).json({ token });
 });
 
