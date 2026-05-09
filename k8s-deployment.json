@@ -1,0 +1,8 @@
+{
+  "spec": {
+    "containers": [
+      { "name": "app", "image": "myapp:1.0" }
+    ]
+  }
+}
+    
