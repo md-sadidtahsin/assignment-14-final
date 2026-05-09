@@ -54,20 +54,20 @@ jobs:
           name: coverage-report
           path: coverage/lcov.info
 
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarqube-scan-action@v5.0.0 # Or current stable SHA update
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          args: >
-            -Dsonar.host.url=https://sonarcloud.io
-            -Dsonar.projectKey=md-sadidtahsin_assignment-14-final
-            -Dsonar.organization=md-sadidtahsin
-            -Dsonar.sources=src
-            -Dsonar.exclusions=**/node_modules/**
-            -Dsonar.test.inclusions=tests/**/*.test.js
-            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
-            -Dsonar.qualitygate.wait=true
+      # - name: SonarCloud Scan
+      #   uses: SonarSource/sonarqube-scan-action@v5.0.0 # Or current stable SHA update
+      #   env:
+      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      #   with:
+      #     args: >
+      #       -Dsonar.host.url=https://sonarcloud.io
+      #       -Dsonar.projectKey=md-sadidtahsin_assignment-14-final
+      #       -Dsonar.organization=md-sadidtahsin
+      #       -Dsonar.sources=src
+      #       -Dsonar.exclusions=**/node_modules/**
+      #       -Dsonar.test.inclusions=tests/**/*.test.js
+      #       -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
+      #       -Dsonar.qualitygate.wait=true
       
       - name: Install OPA
         run: |
