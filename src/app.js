@@ -34,7 +34,6 @@ app.get('/eval', (req, res) => {
 });
 
 app.post("/login", (req, res) => {
-  console.log("SECRET_KEY:", SECRET_KEY);
   const token = jwt.sign({ user: req.body.user }, SECRET_KEY);
   res.status(200).json({ token });
 });
