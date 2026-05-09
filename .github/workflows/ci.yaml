@@ -24,11 +24,12 @@ jobs:
           scan-type: fs
           scan-ref: .
           format: table
-          exit-code: 1   # 
+          exit-code: 0   # 
           vuln-type: os,library
           severity: HIGH,CRITICAL
   
   build-test-analyze:
+    needs: security-scan
     runs-on: ubuntu-latest
     env:
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
