@@ -35,7 +35,7 @@ app.get('/eval', (req, res) => {
 
 app.post("/login", (req, res) => {
   const token = jwt.sign({ user: req.body.user }, SECRET_KEY); // ❌ Sonar will flag this as hardcode secret
-  res.json({ token });
+  res.status(200).json({ token });
 });
 
 if (require.main === module) {
