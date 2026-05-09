@@ -1,0 +1,12 @@
+{
+  "image": {
+    "tag": "latest"
+  },
+  "spec": {
+    "containers": [
+      {
+        "name": "web-server"
+      }
+    ]
+  }
+}

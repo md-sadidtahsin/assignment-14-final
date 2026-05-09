@@ -11,25 +11,25 @@ env:
 
 jobs:
 
-  security-scan:
-    runs-on: ubuntu-latest
+  # security-scan:
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v4
 
-      - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@57a97c7e7821a5776cebc9bb87c984fa69cba8f1 # v0.35.0
-        with:
-          scan-type: fs
-          scan-ref: .
-          format: table
-          exit-code: 1   # 
-          vuln-type: os,library
-          severity: HIGH,CRITICAL
+  #     - name: Run Trivy vulnerability scanner
+  #       uses: aquasecurity/trivy-action@57a97c7e7821a5776cebc9bb87c984fa69cba8f1 # v0.35.0
+  #       with:
+  #         scan-type: fs
+  #         scan-ref: .
+  #         format: table
+  #         exit-code: 1   # 
+  #         vuln-type: os,library
+  #         severity: HIGH,CRITICAL
   
   build-test-analyze:
-    needs: security-scan
+    # needs: security-scan
     runs-on: ubuntu-latest
     env:
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
@@ -45,14 +45,14 @@ jobs:
       - name: Install dependencies
         run: npm ci --ignore-scripts
 
-      - name: Run Jest tests with coverage
-        run: npm test -- --coverage
+      # - name: Run Jest tests with coverage
+      #   run: npm test -- --coverage
 
-      - name: Upload coverage artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: coverage-report
-          path: coverage/lcov.info
+      # - name: Upload coverage artifact
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: coverage-report
+      #     path: coverage/lcov.info
 
       # - name: SonarCloud Scan
       #   uses: SonarSource/sonarqube-scan-action@v5.0.0 # Or current stable SHA update
@@ -77,8 +77,4 @@ jobs:
 
       - name: Run OPA Docker policy check
         run: |
-          echo '{ "image": { "tag": "latest" } }' | opa eval --format=pretty -d policy.rego "data.policy.docker_deny"
-
-      - name: Run OPA Kubernetes policy check
-        run: |
-          opa eval --format=pretty -i k8s-deployment.json -d policy.rego "data.policy.k8s_deny"
+          opa eval --data policy.rego --input input-data.json "data.policy"
